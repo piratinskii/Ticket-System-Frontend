@@ -3,7 +3,7 @@ import router  from "./router";
 import store from "@/store";
 
 const instance = axios.create({
-    baseURL: 'https://localhost:8000/',
+    baseURL: 'https://127.0.0.1:8000/',
 });
 
 axios.defaults.withCredentials = true;
