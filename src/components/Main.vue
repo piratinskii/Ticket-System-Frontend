@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="main-content" ref="mainContent">
-      <TicketList/>
+      <TicketList ref="ticketList" :searchMode="searchMode" :searchQuery="searchQuery" :startDatetime="startDatetime" :endDatetime="endDatetime" :onlyMy="onlyMy"/>
     </div>
   </div>
 </template>
@@ -67,19 +67,24 @@ export default {
     };
   },
   methods: {
-    clearSearch(){
+    clearSearch() {
       this.searchQuery = '';
       this.startDatetime = null;
       this.endDatetime = null;
-      this.$refs.ticketList.clearTickets();
-      this.$refs.ticketList.loadTickets();
-    },
+      if (this.$refs.ticketList) {
+        this.$refs.ticketList.clearTickets();
+        this.$refs.ticketList.loadTickets();
+      }
+    }
+    ,
     onSearchInput() {
       this.skeleton = true;
       clearTimeout(this.debounceTimer);
       this.debounceTimer = setTimeout(() => {
-        this.$refs.ticketList.clearTickets(); // Вызов метода clearTickets() в компоненте TicketList
-        this.$refs.ticketList.loadTickets(); // Загрузка новых тикетов в компоненте TicketList
+        if (this.$refs.ticketList) {
+          this.$refs.ticketList.clearTickets();
+          this.$refs.ticketList.loadTickets();
+        }
         this.skeleton = false;
       }, 500);
     },
