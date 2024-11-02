@@ -47,6 +47,7 @@ Please, instal OpenSSL if it's not already installed. Just follow this official 
 
 3. Generate SSL key and certificate for the server (or you can use your own):
 ```
+openssl genpkey -algorithm RSA -out server.key
 openssl req -new -key server.key -out server.csr -subj "/CN=localhost" -config openssl.cnf
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 ```
