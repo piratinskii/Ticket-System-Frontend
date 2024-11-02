@@ -51,6 +51,8 @@ openssl genpkey -algorithm RSA -out server.key
 openssl req -new -key server.key -out server.csr -subj "/CN=localhost" -config openssl.cnf
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 ```
+4. Install the dependencies: 
+```npm install```
 
 ## Usage 
 
